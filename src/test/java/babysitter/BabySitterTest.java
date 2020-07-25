@@ -32,6 +32,7 @@ public class BabySitterTest {
         assertThat(actualResult).isEqualTo(9);
     }
 
+
     @Test
     public void canCalculateHoursFromStartShiftToBedTime() {
         WageCalculator underTest = new WageCalculator();
@@ -43,5 +44,25 @@ public class BabySitterTest {
 
         actualHours = underTest.calculateHoursFromStartShiftToBedTime(17, 19, 20);
         assertThat(actualHours).isEqualTo(0);
+
+        actualHours = underTest.calculateHoursFromStartShiftToBedTime(17, 21, 20);
+        assertThat(actualHours).isEqualTo(3);
+
+        actualHours = underTest.calculateHoursFromStartShiftToBedTime(21, 22, 20);
+        assertThat(actualHours).isEqualTo(0);
+    }
+
+    @Test
+    public void isEndShiftAfterMidnightReturnsTrueWhenAfterMidnight() {
+        WageCalculator underTest = new WageCalculator();
+        boolean actualResult = underTest.isEndShiftAfterMidnight(3);
+        assertThat(actualResult).isTrue();
+    }
+
+    @Test
+    public void isEndShiftAfterMidnightReturnsFalseWhenBeforeMidnight() {
+        WageCalculator underTest = new WageCalculator();
+        boolean actualResult = underTest.isEndShiftAfterMidnight(23);
+        assertThat(actualResult).isFalse();
     }
 }

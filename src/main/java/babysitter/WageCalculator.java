@@ -5,18 +5,19 @@ public class WageCalculator {
         return 0;
     }
 
-    public int convertTime(int inputTime) {
-
+    protected int convertTime(int inputTime) {
         if (inputTime <= 23 && inputTime >= 17) {
             return inputTime - 17;
         } else {
             return inputTime + 7;
         }
-
     }
 
 
-    public int calculateHoursFromStartShiftToBedTime(int startingHour, int endingHour, int bedtime) {
+    protected int calculateHoursFromStartShiftToBedTime(int startingHour, int endingHour, int bedtime) {
+//        startingHour = convertTime(startingHour);
+//        endingHour = convertTime(endingHour);
+//        bedtime = convertTime(bedtime);
         if (endingHour < bedtime) {
             return endingHour - startingHour;
         } else {
@@ -27,7 +28,15 @@ public class WageCalculator {
                 return workedHours;
             }
         }
+    }
 
+    protected boolean isEndShiftAfterMidnight(Integer endingHour) {
+        if (endingHour.toString().length() == 1) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
+
 }
